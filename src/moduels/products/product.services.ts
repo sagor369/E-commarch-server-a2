@@ -9,6 +9,13 @@ const postProduct = async (payload:TProduct) =>{
 
 }
 
+const getProduct = async() =>{
+    const result = await ProducModel.find()
+    console.log(result)
+    return result
+}
+
 export const ProductServices = {
-    postProduct
+    postProduct,
+    getProduct
 }
