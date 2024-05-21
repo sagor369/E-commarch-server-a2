@@ -48,11 +48,19 @@ export const inventorySchema = new Schema<Tinvertory>({
       type: [variantSchema],
       required: true
     },
-    invertory: {
+    inventory: {
       type: inventorySchema,
       required: true
     }
   });
 
+
+
+// productSchema.pre("find", function(){
+//   console.log(this , "hello this id pore")
+// })
+// productSchema.post("find", function(){
+//     console.log(this , "hello this id age")
+// })
 
 export  const ProducModel = model<TProduct>("product", productSchema)
