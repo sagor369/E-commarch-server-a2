@@ -51,16 +51,13 @@ export const inventorySchema = new Schema<Tinvertory>({
     inventory: {
       type: inventorySchema,
       required: true
+    },
+    isDelete:{
+        type: Boolean,
+        default: false
     }
   });
 
-
-
-// productSchema.pre("find", function(){
-//   console.log(this , "hello this id pore")
-// })
-// productSchema.post("find", function(){
-//     console.log(this , "hello this id age")
-// })
-
+  productSchema.index({ name: 'text', description: 'text' });
 export  const ProducModel = model<TProduct>("product", productSchema)
+
