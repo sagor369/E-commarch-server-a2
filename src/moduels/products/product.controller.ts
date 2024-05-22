@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ProductServices } from "./product.services";
 import ProductValidation from "./product.validation";
 
-const createProduct = async (req: Request, res: Response) => {
+const createProduct = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const data = req.body;
 
@@ -15,11 +15,11 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 };
 
-const findAllProduct = async (req: Request, res: Response) => {
+const findAllProduct = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const {searchTerm} = req.query
     const result = await ProductServices.getProduct(searchTerm);
@@ -37,11 +37,11 @@ const findAllProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 };
 
-const findSingleProduct = async (req: Request, res: Response) => {
+const findSingleProduct = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const { productId } = req.params;
     const result = await ProductServices.getSingleProduct(productId);
@@ -59,11 +59,11 @@ const findSingleProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+   next(error);
   }
 };
 
-const updateProduct = async (req: Request, res: Response) => {
+const updateProduct = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const { productId } = req.params;
     const { quantity } = req.body;
@@ -74,11 +74,11 @@ const updateProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
-const deleteProduct = async (req: Request, res: Response) => {
+const deleteProduct = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const { productId } = req.params;
     await ProductServices.deleteProduct(productId);
@@ -88,7 +88,7 @@ const deleteProduct = async (req: Request, res: Response) => {
       data: null,
     });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 

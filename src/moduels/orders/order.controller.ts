@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { orderServices } from "./order.services";
 import orderValidationSchema from "./order.validation";
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const orderData = req.body;
 
@@ -14,11 +14,11 @@ const createOrder = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 };
 
-const gatAllorders = async (req: Request, res: Response) => {
+const gatAllorders = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const {email} = req.query
     const result = await orderServices.getOrders(email);
@@ -28,7 +28,7 @@ const gatAllorders = async (req: Request, res: Response) => {
       result,
     });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 };
 
