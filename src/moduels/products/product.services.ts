@@ -1,8 +1,6 @@
 import { TProduct } from "./product.interface";
 import { ProducModel } from "./product.model";
 
-ProducModel.createIndexes({ name: "text" });
-
 const postProduct = async (payload: TProduct) => {
   const result = await ProducModel.create(payload);
 

@@ -16,6 +16,7 @@ export default tseslint.config(
     rules: {
         eqeqeq: "off",
         "no-unused-vars": "error",
+        "no-console": "warn",
         "prefer-const": ["error", { "ignoreReadBeforeAssign": true }]
     }
 },
