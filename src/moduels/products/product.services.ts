@@ -20,7 +20,6 @@ const getProduct = async (data: unknown) => {
 };
 
 const getSingleProduct = async (id: string) => {
-  const _id = id;
   const result = await ProducModel.find({ _id: id, isDelete: false });
   console.log(result);
   if (result.length < 1) {

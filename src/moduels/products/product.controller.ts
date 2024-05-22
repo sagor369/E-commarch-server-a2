@@ -77,11 +77,11 @@ const updateProduct = async (req: Request, res: Response) => {
 const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const result = await ProductServices.deleteProduct(productId);
+    await ProductServices.deleteProduct(productId);
     res.json({
       success: true,
-      message: "Products update successfully!",
-      data: result,
+      message: "Product deleted successfully!",
+      data: null,
     });
   } catch (error) {
     console.log(error);
